@@ -3,8 +3,6 @@
 
 ## Redattore: Marco Montorsi
 
-# Sommario
-
 # Introduzione
 
 ## 1.1 Specifiche Di Progetto
