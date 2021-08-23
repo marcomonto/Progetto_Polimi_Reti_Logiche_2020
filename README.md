@@ -15,15 +15,9 @@ La specifica della Prova finale (Progetto di Reti Logiche) 2019 è ispirata al m
 
 La working-zone è un intervallo di indirizzi di dimensione fissa (Dwz) che parte da un indirizzo base. All&#39;interno dello schema di codifica possono esistere multiple working-zone (Nwz). Lo schema modificato di codifica da implementare è il seguente:
 
-![](RackMultipart20210823-4-opahwo_html_b805e0a86be24ba4.png)
-
 Quando l&#39;indirizzo da trasmettere (ADDR) non appartiene a nessuna Working Zone, viene trasmesso così come è, e un bit addizionale rispetto ai bit di indirizzamento (WZ\_BIT) viene messo a 0. In pratica dato ADDR, verrà trasmesso WZ\_BIT=0 concatenato ad ADDR (WZ\_BIT &amp; ADDR, dove &amp; è il simbolo di concatenazione
 
-![](RackMultipart20210823-4-opahwo_html_cc7c4f2518e5720c.png)
-
 Quando l&#39;indirizzo da trasmettere (ADDR) appartiene ad una Working Zone, il bit addizionale WZ\_BIT assume il valore pari a 1, mentre i bit di indirizzo vengono divisi in 2 sotto campi rappresentanti: Il numero binario della working-zone al quale l&#39;indirizzo appartiene (WZ\_NUM), e L&#39;offset rispetto all&#39;indirizzo di base della working zone (WZ\_OFFSET), codificato come one-hot .
-
-![](RackMultipart20210823-4-opahwo_html_d23c949bf0d9f1b4.png)
 
 Nella versione da implementare il numero di bit per la codifica è pari a 7. Gli indirizzi validi vanno da 0 a 127. Il numero di working-zone è 8 (Nwz=8) mentre la dimensione della working-zone è 4 indirizzi incluso quello base (Dwz=4), vedi **Tab.1**.
 
@@ -103,11 +97,7 @@ L&#39;interfaccia del componente dovrà comunicare con la RAM per chiedere in le
 
 - Inizialmente è stato elaborato un primo semplice algoritmo, con lo scopo di visualizzare le fasi del componente:
 
-![](RackMultipart20210823-4-opahwo_html_8c51f85ba96b367b.png)
-
 - Per implementare questo algoritmo si utilizza una Macchina a Stati Finiti (FSM), con la quale si costruiscono gli stati della macchina, aggiungendone diversi per un corretto funzionamento e per una corretta comunicazione con la RAM.
-
-![](RackMultipart20210823-4-opahwo_html_9cadcbff7bab57ba.png)
 
 **Per una lettura più comprensibile è stato omesso da ogni stato la scelta di i\_rst, perché nel caso in cui durante l&#39;esecuzione, i\_rst venga portato a 1, la macchina tornerà in START**
 
@@ -147,22 +137,6 @@ L&#39;interfaccia del componente dovrà comunicare con la RAM per chiedere in le
 
 Per una più approfondita lettura del componente appena descritto, allego la RTL schematic, ovviamente l&#39;immagine può risultare difficile da comprendere, ma può aiutare a capire alcuni punti chiave del componente.
 
-![](RackMultipart20210823-4-opahwo_html_500c9e5b73b503bd.png)
-
-Parte (1/4)
-
-![](RackMultipart20210823-4-opahwo_html_dc99e38c70c884db.png)
-
-Parte (2/4)
-
-![](RackMultipart20210823-4-opahwo_html_d9a0fa61177acacf.png)
-
-Parte (3/4)
-
-![](RackMultipart20210823-4-opahwo_html_344b91013d326ff8.png)
-
-Parte (4/4)
-
 3 Risultati Test
 
 3.1 Test Generici
@@ -186,8 +160,6 @@ CASO 1 CON VALORE NON PRESENTE IN NESSUNA WORKING-ZONE
 
 WAVE WINDOW
 
-![](RackMultipart20210823-4-opahwo_html_e9dd7bb9f291fc16.png)
-
 Come si può notare la macchina prima chiede l&#39;indirizzo 8 alla RAM, poi controlla i valori delle WZ e infine non trovando nessuna corrispondenza, scrive nell&#39;indirizzo 9 il valore 2a, che in decimale corrisponde a 42 come da consegna, il tutto in circa 7 us.
 
 CASO 2 CON VALORE PRESENTE IN UNA WORKING-ZONE
@@ -207,8 +179,6 @@ CASO 2 CON VALORE PRESENTE IN UNA WORKING-ZONE
 
 WAVE WINDOW
 
-![](RackMultipart20210823-4-opahwo_html_8afe4d5bc97f087c.png)
-
 Come si può notare la macchina trova la WZ all&#39;indirizzo 3 e scrive in memoria all&#39;indirizzo 9 b4, ovvero 180, poiché l&#39;indirizzo codificato risulta 1(WZ found) – 011(terzo indirizzo WZ) – 0100(one-hot corrispondente), il processo impiega circa 4 us.
 
 3.2 Test casi critici
@@ -216,8 +186,6 @@ Come si può notare la macchina trova la WZ all&#39;indirizzo 3 e scrive in memo
 Un primo caso particolare è l&#39;attivazione del segnale di reset durante la computazione, come esempio prendiamo quello relativo all&#39;esempio precedente, ovvero il caso 2, riporto sempre la wave window di tale test:
 
 WAVE WINDOW
-
-![](RackMultipart20210823-4-opahwo_html_393feafeadb045dc.png)
 
 La FSM si comporta come l&#39;esempio precedente, quando a 3,5 us, la macchina riceve un segnale di reset, e come da specifica ritorna allo stato iniziale per poi riprendere il processo.
 
