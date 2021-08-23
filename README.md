@@ -5,7 +5,6 @@
 
 # Sommario
 
-1.
 # Introduzione
 
 ## 1.1 Specifiche Di Progetto
