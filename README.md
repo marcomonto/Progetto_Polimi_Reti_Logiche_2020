@@ -91,7 +91,6 @@ L&#39;interfaccia del componente dovrà comunicare con la RAM per chiedere in le
 1.
 # Scelte Progettuali
 
-  1.
 ## **Scelta Design**
 
 - Inizialmente è stato elaborato un primo semplice algoritmo, con lo scopo di visualizzare le fasi del componente:
@@ -100,7 +99,6 @@ L&#39;interfaccia del componente dovrà comunicare con la RAM per chiedere in le
 
 **Per una lettura più comprensibile è stato omesso da ogni stato la scelta di i\_rst, perché nel caso in cui durante l&#39;esecuzione, i\_rst venga portato a 1, la macchina tornerà in START**
 
-  1.
 ## Descrizione Stati
 
 - START : Stato iniziale della macchina dove inizializza le variabili utilizzate e aspetta fino a quando il segnale i\_start diventi 1, una volta letto, procede verso ADDR\_READ\_ASK
