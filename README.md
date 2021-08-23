@@ -1,7 +1,6 @@
-# Progetto_Polimi_Reti_Logiche_2020
-# Progetto Reti Logiche 2019/2020
+# Progetto Reti Logiche 2019/2020 Valutazione: 30L
 
-## Redattore: Marco Montorsi
+## Redattore: Marco Montorsi 
 
 # Introduzione
 
