@@ -1,5 +1,5 @@
 # Progetto_Polimi_Reti_Logiche_2020
-# Progetto Reti Logiche 2019
+# Progetto Reti Logiche 2019/2020
 
 ## Redattore: Marco Montorsi
 
